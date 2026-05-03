@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "expo": "~52.0.0",
+    "expo-asset": "~11.0.0",
     "expo-router": "~4.0.0",
     "expo-sqlite": "~14.0.0",
     "expo-font": "~13.0.0",
