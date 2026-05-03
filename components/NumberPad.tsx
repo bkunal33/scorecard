@@ -7,6 +7,7 @@ import {
   View,
 } from 'react-native';
 import { Feather, MaterialIcons } from '@expo/vector-icons';
+import * as Haptics from 'expo-haptics';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Avatar from './Avatar';
 import { Colors, Fonts } from '../constants/Colors';
@@ -75,6 +76,7 @@ export default function NumberPad({
   }, []);
 
   const press = (key: string) => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     setSkipped(false);
     switch (key) {
       case 'del':
@@ -95,6 +97,16 @@ export default function NumberPad({
     }
   };
 
+  const handleSaveWithHaptic = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    handleSave();
+  };
+
+  const handlePrevWithHaptic = () => {
+    Haptics.selectionAsync();
+    onPrev();
+  };
+
   const handleSave = () => {
     if (skipped) {
       onSave(null, true);
@@ -111,7 +123,7 @@ export default function NumberPad({
     { label: '1', key: '1' },
     { label: '2', key: '2' },
     { label: '3', key: '3' },
-    { label: <MaterialIcons name="backspace" size={20} color={Colors.negative} />, key: 'del', variant: 'danger' },
+    { label: '⌫', key: 'del', variant: 'danger' },
     { label: '4', key: '4' },
     { label: '5', key: '5' },
     { label: '6', key: '6' },
@@ -167,7 +179,7 @@ export default function NumberPad({
                 variant === 'accent' && styles.keyAccent,
                 pressed && styles.keyPressed,
               ]}
-              onPress={() => key === 'save' ? handleSave() : key === 'prev' ? onPrev() : press(key)}
+              onPress={() => key === 'save' ? handleSaveWithHaptic() : key === 'prev' ? handlePrevWithHaptic() : press(key)}
             >
               {typeof label === 'string' ? (
                 <Text style={[
@@ -306,6 +318,8 @@ const styles = StyleSheet.create({
     color: Colors.paper,
   },
   keyLabelDanger: {
+    fontFamily: Fonts.medium,
+    fontSize: 22,
     color: Colors.negative,
   },
 });
