@@ -11,6 +11,7 @@ import {
   JetBrainsMono_500Medium,
 } from '@expo-google-fonts/jetbrains-mono';
 import { Caveat_600SemiBold } from '@expo-google-fonts/caveat';
+import { Feather, MaterialIcons } from '@expo/vector-icons';
 import { SQLiteProvider } from 'expo-sqlite';
 import { Stack } from 'expo-router';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -26,6 +27,8 @@ export default function RootLayout() {
     JetBrainsMono_400Regular,
     JetBrainsMono_500Medium,
     Caveat_600SemiBold,
+    ...Feather.font,
+    ...MaterialIcons.font,
   });
 
   useEffect(() => {
