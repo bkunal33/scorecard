@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Ensure Homebrew and common node paths are available to Gradle and all child processes
+export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:$PATH"
+
 #
 # Copyright © 2015-2021 the original authors.
 #
