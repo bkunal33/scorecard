@@ -180,14 +180,6 @@ export default function ScoringScreen() {
         <Pressable style={styles.iconBtn} onPress={handleEndGame}>
           <Feather name="flag" size={16} color={Colors.ink} />
         </Pressable>
-        <Pressable style={styles.iconBtn} onPress={() =>
-          Alert.alert('More', '', [
-            { text: 'End game', onPress: handleEndGame },
-            { text: 'Cancel', style: 'cancel' },
-          ])
-        }>
-          <Feather name="more-horizontal" size={16} color={Colors.ink} />
-        </Pressable>
       </View>
 
       {/* Table */}
